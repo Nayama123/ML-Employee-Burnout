@@ -1,0 +1,218 @@
+ body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Animated gradient background */
+    background: linear-gradient(-45deg, #c2e9fb, #e2fcfa, #fdfbfb, #d6e6f2);
+    background-size: 400% 400%;
+    animation: gradientShift 18s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Subtle workplace-themed illustration overlay */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("/static/58939.jpg") repeat;
+    background-size: 200px 200px;
+    opacity: 1;
+    z-index: -1;
+}
+
+
+/* Main container with glass effect */
+.container {
+    display: flex;
+    width: 90%;           /* wider than before */
+    max-width: 1400px;    /* allow more space */
+    margin: none;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    backdrop-filter: blur(18px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1;
+}
+
+.container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 14px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Left panel */
+.left-panel {
+    flex: 1;
+    padding: 40px;
+    border-right: 2px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    text-align: center;
+}
+
+.left-panel h2 {
+    color: #1a237e;
+    margin-bottom: 15px;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.left-panel p {
+    color: #12232b;
+    margin-bottom: none;
+    line-height: 1.6;
+    font-size: 20px;
+    text-align: justify;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 14px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.left-panel .note {
+    font-size: 18px;        /* smaller */
+    font-style: italic;     /* subtle look */
+    color: #8d4545;            /* softer color */
+    background: none;       /* remove box background */
+    box-shadow: none;       /* no shadow */
+    margin-top: none;
+    text-align: center;     /* centered note */
+}
+.left-panel img {
+    width: 60%;
+    margin-top: 10px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(228, 197, 197, 0.75);
+}
+
+/* Right panel */
+.right-panel {
+    flex: 1;
+    padding: 40px;
+    background: rgba(252, 251, 251, 0.2);
+    backdrop-filter: blur(8px);
+}
+
+.right-panel h1 {
+    text-align: center;
+    margin-bottom: 0px;
+    color: #0d47a1;
+    font-size: 35px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+    font-size: 20px;
+}
+
+input, select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 19px;
+    background: rgba(255, 255, 255, 0.85);
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #3366ff;
+    box-shadow: 0 0 8px rgba(51, 102, 255, 0.5);
+    outline: none;
+}
+
+button {
+    padding: 14px;
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #357abd, #2c5aa0);
+    box-shadow: 0px 6px 16px rgba(53, 122, 189, 0.5);
+}
+
+/* Result box */
+.result-box {
+    margin-top: 0px;
+    padding: 0px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.result-box.low {
+    background: rgba(230, 255, 230, 0.9);
+    border: 2px solid #33cc33;
+    color: #006600;
+}
+
+.result-box.medium {
+    background: rgba(255, 245, 230, 0.9);
+    border: 2px solid #ff9900;
+    color: #949900;
+}
+.result-box.elevated {
+    background: rgba(255, 245, 230, 0.9);
+    border: 2px solid #ff9900;
+    color: #995400;
+}
+.result-box.high {
+    background: rgba(255, 230, 230, 0.9);
+    border: 2px solid #ff3333;
+    color: #990000;
+}
+
+/* Button group layout */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+/* Reset button styling */
+.reset-btn {
+    background: linear-gradient(135deg, #ff6666, #cc0000);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    padding: 8px;
+}
+
+.reset-btn:hover {
+    background: linear-gradient(135deg, #cc0000, #990000);
+    box-shadow: 0px 6px 16px rgba(204, 0, 0, 0.5);
+}

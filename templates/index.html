@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Burnout Risk Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Left side: image above, info below -->
+        <div class="left-panel">
+            <img src="{{ url_for('static', filename='burnout.png') }}" alt="Burnout Info">
+            
+            <div class="info-text">
+                <h2>Work-Life Balance & Burnout</h2>
+                <p>
+                    Maintaining a healthy work-life balance reduces stress, prevents burnout, and supports long-term performance of employees.
+                     This tool estimates burnout risk from workload and work environment factors.Use the results to guide employees with interventions like workload redistribution,  wellness programs, or flexible work options.
+                </p>
+                <p class="note">
+                     Lower scores suggest good balance; higher scores highlight areas requiring immediate focus. 
+                </p> 
+                
+            </div>
+        </div>
+        <!-- Right side: form + prediction -->
+        <div class="right-panel">
+            <h1>Burnout Risk Predictor</h1>
+            <form action="/predict" method="POST">
+                <label for="gender">Gender:</label>
+                <select name="gender" required>
+                    <option value="">--Select--</option>
+                    <option value="Female" {% if gender == "Female" %}selected{% endif %}>Female</option>
+                    <option value="Male" {% if gender == "Male" %}selected{% endif %}>Male</option>
+                </select>
+
+                <label for="company_type">Company Type:</label>
+                <select name="company_type" required>
+                    <option value="">--Select--</option>
+                    <option value="Product" {% if company_type == "Product" %}selected{% endif %}>Product</option>
+                    <option value="Service" {% if company_type == "Service" %}selected{% endif %}>Service</option>
+                </select>
+
+                <label for="wfh_setup">WFH Setup Available:</label>
+                <select name="wfh_setup" required>
+                    <option value="">--Select--</option>
+                    <option value="Yes" {% if wfh_setup == "Yes" %}selected{% endif %}>Yes</option>
+                    <option value="No" {% if wfh_setup == "No" %}selected{% endif %}>No</option>
+                </select>
+
+                <label for="designation">Designation (1–5):</label>
+                <input type="number" name="designation" min="1" max="5" step="1" required value="{{ designation if designation is defined else '' }}">
+
+                <label for="resource_allocation">Resource Allocation (1–10):</label>
+                <input type="number" name="resource_allocation" min="1" max="10" step="1" required value="{{ resource_allocation if resource_allocation is defined else '' }}">
+
+                <label for="mental_fatigue">Mental Fatigue Score (0–10):</label>
+                <input type="number" name="mental_fatigue" min="0" max="10" step="0.1" required value="{{ mental_fatigue if mental_fatigue is defined else '' }}">
+
+                <div class="button-group">
+                    <button type="submit">Predict Burnout Risk</button>
+                    <button type="button" class="reset-btn" onclick="window.location.href='/'">Reset</button>
+                </div>
+            </form>
+
+            {% if prediction_text %}
+                <div class="result-box {{ risk_level }}">
+                    <h3>{{ prediction_text }}</h3>
+                    <p>{{ suggestion_text }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
