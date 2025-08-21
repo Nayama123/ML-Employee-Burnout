@@ -8,8 +8,8 @@ Flask==2.3.3
 gunicorn==21.2.0
 
 # Data processing
-pandas==2.2.2
 numpy==1.26.4
+pandas==2.1.4   # Downgraded for stable prebuilt wheels
 
 # Machine learning
 scikit-learn==1.4.2
