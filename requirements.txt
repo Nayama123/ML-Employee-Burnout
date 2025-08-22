@@ -9,7 +9,7 @@ gunicorn==21.2.0
 
 # Data processing
 numpy==1.26.4
-pandas==2.1.4   # Downgraded for stable prebuilt wheels
+pandas==2.0.3   # Downgraded for stable prebuilt wheels
 
 # Machine learning
 scikit-learn==1.4.2
